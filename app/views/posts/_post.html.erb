@@ -1,0 +1,7 @@
+<%= tag.div id: dom_id(post) do %>
+<br>
+ <div><%= post.author.name %> (<%= post.author.email%>) </div>
+ <%= post.updated_at %> 
+ <%= post.body %>
+ 
+<% end %>
