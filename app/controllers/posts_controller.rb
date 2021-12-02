@@ -5,13 +5,15 @@ class PostsController < ApplicationController
     def create
         @post = @conversation.posts.new(post_params)
         @post.author = current_user
-        
-       respond_to do |format|
+
+        respond_to do |format|
+           if @post.save                  
+                format.html { redirect_to @conversation }
+            else
+                format.html { flash[:error] = 'Could not save your post for reasons. Please try again' }
+            end
+        end
            
-           if @post.save
-            format.html { redirect_to @conversation }
-           end
-       end
     end
 
     private
